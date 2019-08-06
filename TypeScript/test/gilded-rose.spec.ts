@@ -81,6 +81,18 @@ describe('Gilded Rose', () => {
             gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 17, 11)]);
         });
 
+        it('when SellIn is less than 5 should increase Quality from 11 to 14 on update', () => {
+            gildedRose.items[0].sellIn = 2
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(14);
+        });
+
+        it('when SellIn is 5 should increase Quality from 11 to 14 on update', () => {
+            gildedRose.items[0].sellIn = 5
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(14);
+        });
+
         it('when SellIn is less than 10 should increase Quality from 11 to 13 on update', () => {
             gildedRose.items[0].sellIn = 7
             const actualUpdatedItem = gildedRose.updateQuality()[0];
