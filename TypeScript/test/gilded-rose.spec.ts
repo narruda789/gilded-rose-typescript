@@ -37,6 +37,29 @@ describe('Gilded Rose', () => {
         });
     });
 
+    describe('with multiple normal items', () => {
+        var gildedRose: GildedRose;
+        
+        beforeEach(() => {
+            gildedRose = new GildedRose([
+                new Item('parsley', 5, 10),
+                new Item('sage', 6, 13),
+                new Item('rosemary', 4, 8),
+                new Item('thyme', 1, 3)
+            ]);
+        });
+        
+        it('should degrade all SellIn values on update', () => {
+            const actualUpdatedItems = gildedRose.updateQuality();
+            expect(actualUpdatedItems[0].sellIn).to.equal(4);
+            expect(actualUpdatedItems[1].sellIn).to.equal(5);
+            expect(actualUpdatedItems[2].sellIn).to.equal(3);
+            expect(actualUpdatedItems[3].sellIn).to.equal(0);
+        });
+        
+    });
+
+
     describe('with one Aged Brie', () => {
         var gildedRose: GildedRose;
 
