@@ -104,5 +104,11 @@ describe('Gilded Rose', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.quality).to.equal(13);
         });
+
+        it('when SellIn is 0 should have Quality of zero', () => {
+            gildedRose.items[0].sellIn = 0
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(0);
+        });
     });
 });
