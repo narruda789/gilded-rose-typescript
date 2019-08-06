@@ -36,4 +36,17 @@ describe('Gilded Rose', () => {
             expect(actualUpdatedItem.quality).to.equal(0);
         });
     });
+
+    describe('with one Aged Brie', () => {
+        var gildedRose: GildedRose;
+
+        beforeEach(() => {
+            gildedRose = new GildedRose([new Item('Aged Brie', 5, 10)]);
+        });
+
+        it('should increase Quality from 10 to 11 on update', () => {
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(11);
+        })
+    });
 });
