@@ -59,10 +59,18 @@ describe('Gilded Rose', () => {
     describe('with one Sulfuras', () => {
         var gildedRose: GildedRose;
 
-        it('should not decrease SellIn on update', () => {
-            gildedRose = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 20, 30)])
+        beforeEach(() => {
+            gildedRose = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 20, 30)]);
+        });
+
+        it('should not decrease Quality on update', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.quality).to.equal(30);
+        });
+
+        it('should not decrease SellIn on update', () => {
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.sellIn).to.equal(20);
         });
     })
 });
