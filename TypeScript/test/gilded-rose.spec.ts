@@ -2,16 +2,15 @@ import { expect } from 'chai';
 import { Item, GildedRose } from '../app/gilded-rose';
 
 describe('Gilded Rose', function () {
-
+    const gildedRose = new GildedRose([new Item('banana', 5, 10)]);
+    
     it('should add a banana', () => {
-        const gildedRose = new GildedRose([ new Item('banana', 5, 10) ]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].name).to.equal('banana');
+        const actualUpdatedItem = gildedRose.updateQuality()[0];
+        expect(actualUpdatedItem.name).to.equal('banana');
     });
 
-    it('should degrade SellIn after one day', () =>{
-        const gildedRose = new GildedRose([ new Item('banana', 5, 10)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].sellIn).to.equal(4);
+    it('should degrade SellIn from 5 to 4 after one day', () =>{
+        const actualUpdatedItem = gildedRose.updateQuality()[0];
+        expect(actualUpdatedItem.sellIn).to.equal(4);
     });
 });
