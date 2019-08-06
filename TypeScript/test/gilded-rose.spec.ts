@@ -48,5 +48,11 @@ describe('Gilded Rose', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.quality).to.equal(11);
         })
+
+        it('when Quality is 50 should not increase Quality', () => {
+            gildedRose.items[0].quality = 50;
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(50);
+        });
     });
 });
