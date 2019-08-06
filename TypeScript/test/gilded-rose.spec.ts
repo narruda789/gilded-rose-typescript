@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { Item, GildedRose } from '../app/gilded-rose';
 
 describe('Gilded Rose', () => {
-    describe('happy path', () => {
+    describe('with one normal item', () => {
         var gildedRose: GildedRose;
         
         beforeEach(() => {
@@ -14,27 +14,20 @@ describe('Gilded Rose', () => {
             expect(actualUpdatedItem.name).to.equal('banana');
         });
         
-        it('should degrade SellIn from 5 to 4 after one day', () => {
+        it('should degrade SellIn from 5 to 4 on update', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.sellIn).to.equal(4);
         });
         
-        it('should degrade Quality from 10 to 9 after one day', () => {
+        it('should degrade Quality from 10 to 9 on update', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.quality).to.equal(9);
         });
-    });
-
-    describe('when sell-by date has passed', () => {
-        var gildedRose: GildedRose;
         
-        beforeEach(() => {
-            gildedRose = new GildedRose([new Item('cherry pie', -1, 12)]);
-        });
-        
-        it('should degrade Quality from 12 to 10 after one day', () => {
+        it('when SellIn < 0 should degrade Quality from 10 to 8 on update', () => {
+            gildedRose.items[0].sellIn = -1;
             const actualUpdatedItem = gildedRose.updateQuality()[0];
-            expect(actualUpdatedItem.quality).to.equal(10);
+            expect(actualUpdatedItem.quality).to.equal(8);
         });
     });
 });
