@@ -19,9 +19,22 @@ describe('Gilded Rose', () => {
             expect(actualUpdatedItem.sellIn).to.equal(4);
         });
         
-        it('should degrade Quality from 10 to 9 after one day',() => {
+        it('should degrade Quality from 10 to 9 after one day', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.quality).to.equal(9);
+        });
+    });
+
+    describe('when sell-by date has passed', () => {
+        var gildedRose: GildedRose;
+        
+        beforeEach(() => {
+            gildedRose = new GildedRose([new Item('cherry pie', -1, 12)]);
+        });
+        
+        it('should degrade Quality from 12 to 10 after one day', () => {
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(10);
         });
     });
 });
