@@ -72,5 +72,19 @@ describe('Gilded Rose', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.sellIn).to.equal(20);
         });
-    })
+    });
+
+    describe('with one Backstage Pass', () => {
+        var gildedRose: GildedRose;
+
+        beforeEach(() => {
+            gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 17, 11)]);
+        });
+
+        it('when SellIn is 10 should increase Quality from 11 to 13 on update', () => {
+            gildedRose.items[0].sellIn = 10
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(13);
+        });
+    });
 });
