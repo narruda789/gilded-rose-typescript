@@ -29,5 +29,11 @@ describe('Gilded Rose', () => {
             const actualUpdatedItem = gildedRose.updateQuality()[0];
             expect(actualUpdatedItem.quality).to.equal(8);
         });
+
+        it('when Quality is 0 should not reduce Quality', () => {
+            gildedRose.items[0].quality = 0;
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(0);
+        });
     });
 });
