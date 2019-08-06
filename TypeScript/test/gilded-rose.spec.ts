@@ -56,7 +56,14 @@ describe('Gilded Rose', () => {
             expect(actualUpdatedItems[2].sellIn).to.equal(3);
             expect(actualUpdatedItems[3].sellIn).to.equal(0);
         });
-        
+
+        it('should degrade all Quality values on update', () => {
+            const actualUpdatedItems = gildedRose.updateQuality();
+            expect(actualUpdatedItems[0].quality).to.equal(9);
+            expect(actualUpdatedItems[1].quality).to.equal(12);
+            expect(actualUpdatedItems[2].quality).to.equal(7);
+            expect(actualUpdatedItems[3].quality).to.equal(2);
+        });        
     });
 
 
