@@ -55,4 +55,14 @@ describe('Gilded Rose', () => {
             expect(actualUpdatedItem.quality).to.equal(50);
         });
     });
+
+    describe('with one Sulfuras', () => {
+        var gildedRose: GildedRose;
+
+        it('should not decrease SellIn on update', () => {
+            gildedRose = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 20, 30)])
+            const actualUpdatedItem = gildedRose.updateQuality()[0];
+            expect(actualUpdatedItem.quality).to.equal(30);
+        });
+    })
 });
